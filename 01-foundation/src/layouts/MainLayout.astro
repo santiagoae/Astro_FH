@@ -1,0 +1,26 @@
+---
+//server only -> porque cuando se haga el build se va a
+// quitar la interactividad que no sea llamada en un script
+// ademas las variables van a quedar estaticas, no se va a visualizar en el codigo del build
+import Navbar from "@components/Navbar.astro";
+interface Props {
+  title: string;
+  name: string;
+}
+const { title, name } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navbar />
+    <h1>{name}</h1>
+    <slot />
+  </body>
+</html>

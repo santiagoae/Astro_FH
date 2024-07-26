@@ -1,0 +1,17 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+---
+
+<MainLayout title="Home" name="Home Astro">
+  <small
+    >hora sin script para probar en server: {
+      new Date().toLocaleTimeString()
+    }</small
+  >
+  <p></p>
+  <script>
+    const time = new Date().toLocaleTimeString();
+    const p = document.querySelector("p") as HTMLParagraphElement;
+    p.innerText = `server time: ${time}`;
+  </script>
+</MainLayout>
