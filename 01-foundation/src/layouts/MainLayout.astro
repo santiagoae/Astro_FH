@@ -3,11 +3,13 @@
 // quitar la interactividad que no sea llamada en un script
 // ademas las variables van a quedar estaticas, no se va a visualizar en el codigo del build
 import Navbar from "@components/Navbar.astro";
+
+import "../styles/global.css";
+
 interface Props {
   title: string;
-  name: string;
 }
-const { title, name } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <html lang="en">
@@ -20,7 +22,12 @@ const { title, name } = Astro.props;
   </head>
   <body>
     <Navbar />
-    <h1>{name}</h1>
     <slot />
   </body>
 </html>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+</style>

@@ -2,4 +2,14 @@
 import MainLayout from "@layouts/MainLayout.astro";
 ---
 
-<MainLayout title="About" name="About Astro" />
+<MainLayout title="About">
+  <h1>About what</h1>
+</MainLayout>
+
+<style is:global>
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: red;
+  }
+</style>
