@@ -3,6 +3,7 @@
 // quitar la interactividad que no sea llamada en un script
 // ademas las variables van a quedar estaticas, no se va a visualizar en el codigo del build
 import Navbar from "@components/Navbar.astro";
+import { ViewTransitions } from "astro:transitions";
 
 import "../styles/global.css";
 
@@ -19,10 +20,13 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body>
     <Navbar />
-    <slot />
+    <main>
+      <slot />
+    </main>
   </body>
 </html>
 
