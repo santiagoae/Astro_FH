@@ -1,0 +1,21 @@
+---
+import { type ISpecificPokemon } from "@interfaces/specific-pokemon.interface";
+
+interface Props {
+  name: string;
+  url: string;
+}
+
+const { name, url } = Astro.props;
+
+const res = await fetch(`${url}`);
+const data = (await res.json()) as ISpecificPokemon;
+---
+
+<div class="flex flex-col items-center justify-center p-2 border rounded">
+  <img
+    src={data.sprites.other?.["official-artwork"].front_default}
+    alt={name}
+  />
+  <span>{name}</span>
+</div>
