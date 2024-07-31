@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from "astro";
+import MainLayout from "@layouts/MainLayout.astro";
+
+//listado de paginas permitidas, crea en estado de compilacion y si no tira 404
+export const getStaticPaths = (() => {
+  return [
+    { params: { name: "bulbasaur" } },
+    { params: { name: "charmander" } },
+    { params: { name: "raticate" } },
+  ];
+}) satisfies GetStaticPaths;
+
+const { name } = Astro.params;
+---
+
+<MainLayout title="algun pokemon">
+  <h1 class="text-3xl">{name}</h1>
+</MainLayout>
