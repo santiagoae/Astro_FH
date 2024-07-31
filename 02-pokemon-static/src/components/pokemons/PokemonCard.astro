@@ -10,15 +10,14 @@ const { name, url } = Astro.props;
 
 const res = await fetch(`${url}`);
 const data = (await res.json()) as ISpecificPokemon;
+
+const officialArtWork = data.sprites.other?.["official-artwork"].front_default;
 ---
 
 <a
   class="flex flex-col items-center justify-center p-2 border rounded"
   href={`/pokemons/${name}`}
 >
-  <img
-    src={data.sprites.other?.["official-artwork"].front_default}
-    alt={name}
-  />
+  <img src={officialArtWork} alt={name} />
   <span class="capitalize">{name}</span>
 </a>

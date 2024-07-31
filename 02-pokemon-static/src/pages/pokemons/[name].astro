@@ -1,19 +1,48 @@
 ---
 import type { GetStaticPaths } from "astro";
 import MainLayout from "@layouts/MainLayout.astro";
+import PokemonCard from "@components/pokemons/PokemonCard.astro";
+import type { IPokemonList } from "@interfaces/pokemon-list.interface";
 
 //listado de paginas permitidas, crea en estado de compilacion y si no tira 404
-export const getStaticPaths = (() => {
-  return [
-    { params: { name: "bulbasaur" } },
-    { params: { name: "charmander" } },
-    { params: { name: "raticate" } },
-  ];
+/**este codigo es escrito de manera estatica por eso se llama getStaticPaths
+ * y hay que nombrar cuales son los params y las props permitidas,
+ * de esta forma se generan todas las paginas antes de que cargue la pagina actual
+ */
+export const getStaticPaths = (async () => {
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+  const { results } = (await res.json()) as IPokemonList;
+  return results.map(({ name, url }) => ({
+    params: { name },
+    props: { url: url, name },
+  }));
 }) satisfies GetStaticPaths;
 
 const { name } = Astro.params;
+const { url } = Astro.props;
+
+const id = String(url).split("/").at(-2);
+const cries = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
 ---
 
 <MainLayout title="algun pokemon">
-  <h1 class="text-3xl">{name}</h1>
+  <section class="mt-10 mx-10 flex flex-col justify-center items-center">
+    <div>
+      <a href="/">regresar</a>
+      <h1 class="text-3xl">{name}</h1>
+    </div>
+
+    <PokemonCard name={name} url={url} />
+
+    <audio controls class="mt-5">
+      <source src={cries} type="audio/ogg" />
+      Your browser does not support the audio element.
+    </audio>
+  </section>
 </MainLayout>
+
+<style>
+  a {
+    @apply hover:underline text-blue-500;
+  }
+</style>
