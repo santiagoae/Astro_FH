@@ -24,9 +24,10 @@ const id = url.split("/").at(-2);
   href={`/pokemons/${name}`}
 >
   <img
+    transition:name={`${name}-image`}
     src={officialArtWork}
     alt={name}
-    class:list={[{ "w-16 h-16": !isBig, "w-26 h-26": isBig }]}
+    class:list={[{ "w-22 h-22": !isBig, "w-26 h-26": isBig }]}
   />
   <span class:list={["capitalize", { "text-3xl": isBig }]}>#{id} {name}</span>
 </a>
