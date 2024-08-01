@@ -4,20 +4,29 @@ import { type ISpecificPokemon } from "@interfaces/specific-pokemon.interface";
 interface Props {
   name: string;
   url: string;
+  isBig?: boolean;
 }
 
-const { name, url } = Astro.props;
+const { name, url, isBig = false } = Astro.props;
 
 const res = await fetch(`${url}`);
 const data = (await res.json()) as ISpecificPokemon;
 
 const officialArtWork = data.sprites.other?.["official-artwork"].front_default;
+const id = url.split("/").at(-2);
 ---
 
 <a
-  class="flex flex-col items-center justify-center p-2 border rounded"
+  class:list={[
+    "flex flex-col items-center justify-center p-2  rounded",
+    !isBig && "border",
+  ]}
   href={`/pokemons/${name}`}
 >
-  <img src={officialArtWork} alt={name} />
-  <span class="capitalize">{name}</span>
+  <img
+    src={officialArtWork}
+    alt={name}
+    class:list={[{ "w-16 h-16": !isBig, "w-26 h-26": isBig }]}
+  />
+  <span class:list={["capitalize", { "text-3xl": isBig }]}>#{id} {name}</span>
 </a>
