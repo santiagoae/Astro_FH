@@ -16,12 +16,13 @@ const officialArtWork = data.sprites.other?.["official-artwork"].front_default;
 const id = url.split("/").at(-2);
 ---
 
+<!-- href={`/pokemons/${name}`} -->
 <a
   class:list={[
     "flex flex-col items-center justify-center p-2  rounded",
     !isBig && "border",
   ]}
-  href={`/pokemons/${name}`}
+  href={`/pokemon/${id}`}
 >
   <img
     transition:name={`${name}-image`}
