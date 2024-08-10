@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+//import { ViewTransitions } from "astro:transitions";
 import { siteInfo } from "src/constants/meta-constants";
 
 interface Props {
@@ -32,7 +32,12 @@ const {
     <meta property="og:image" content={image} />
 
     <title>{title}</title>
-    <ViewTransitions />
+    <!-- <ViewTransitions />  se actualizo para dejar de usar con js y usar este stilo de forma nativa-->
+    <style>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>
   </head>
   <body class="bg-slate-800 text-slate-100 m-auto max-w-3xl p-4">
     <slot />
