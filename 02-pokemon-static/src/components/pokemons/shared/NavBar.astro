@@ -1,0 +1,52 @@
+---
+const routes = [
+  { name: "listado", href: "/" },
+  { name: "paginado", href: "/pokemons/1" },
+  { name: "favoritos", href: "/favorites" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<!-- <nav class="bg-slate-900">
+  <div
+    class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300"
+  >
+    {
+      routes.map(({ name, href }) => (
+        <a
+          href={href}
+          class:list={[
+            "text-white dark:text-gray-200 mx-1.5 sm:mx-6",
+            { "border-b-2 border-blue-500": href === currentPath },
+          ]}
+        >
+          {name}
+        </a>
+      ))
+    }
+  </div>
+</nav> -->
+<nav class="bg-slate-900">
+  <div
+    class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300"
+  >
+    {
+      routes.map(({ name, href }) => (
+        <div>
+          <a href={href} class="text-white dark:text-gray-200 mx-1.5 sm:mx-6">
+            {name}
+          </a>
+          {href === currentPath ? (
+            <div
+              transition:name="menu-line"
+              class="border-b-2 border-blue-500 mx-4"
+            />
+          ) : (
+            <div class="border-b-2 border-transparent" />
+          )}
+        </div>
+      ))
+    }
+  </div>
+</nav>

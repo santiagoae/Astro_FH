@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import PokemonCard from "@components/pokemons/PokemonCard.astro";
 import type { IPokemonList } from "@interfaces/pokemon-list.interface";
+import Title from "@components/pokemons/shared/Title.astro";
 
 //listado de paginas permitidas, crea en estado de compilacion y si no tira 404
 /**este codigo es escrito de manera estatica por eso se llama getStaticPaths
@@ -33,8 +34,8 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 >
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
     <div>
-      <a href="/">regresar</a>
-      <h1 class="text-3xl">{name}</h1>
+      <button class="text-blue-500" onclick="history.back()">Regresar</button>
+      <Title>{name}</Title>
     </div>
 
     <PokemonCard name={name} url={url} isBig={true} />
