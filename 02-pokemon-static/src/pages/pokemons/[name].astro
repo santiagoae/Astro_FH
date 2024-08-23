@@ -4,6 +4,7 @@ import MainLayout from "@layouts/MainLayout.astro";
 import PokemonCard from "@components/pokemons/PokemonCard.astro";
 import type { IPokemonList } from "@interfaces/pokemon-list.interface";
 import Title from "@components/pokemons/shared/Title.astro";
+import { Icon } from "astro-icon/components";
 
 //listado de paginas permitidas, crea en estado de compilacion y si no tira 404
 /**este codigo es escrito de manera estatica por eso se llama getStaticPaths
@@ -33,9 +34,16 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
   image={imageSrc}
 >
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
-    <div>
-      <button class="text-blue-500" onclick="history.back()">Regresar</button>
-      <Title>{name}</Title>
+    <div class="flex">
+      <div>
+        <button class="text-blue-500" onclick="history.back()">Regresar</button>
+        <Title>{name}</Title>
+      </div>
+
+      <button id="btn-favorite" class="ml-4">
+        <Icon name="heart-outline" size={50} />
+        <Icon name="heart-full" size={50} />
+      </button>
     </div>
 
     <PokemonCard name={name} url={url} isBig={true} />
@@ -50,5 +58,9 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
 <style>
   a {
     @apply hover:underline text-blue-500;
+  }
+
+  #btn-favorite {
+    @apply hover:animate-pulse;
   }
 </style>
