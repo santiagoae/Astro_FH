@@ -1,5 +1,5 @@
 ---
-//import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions } from "astro:transitions";
 import NavBar from "@components/shared/NavBar.astro";
 import { siteInfo } from "src/constants/meta-constants";
 
@@ -33,12 +33,14 @@ const {
     <meta property="og:image" content={image} />
 
     <title>{title}</title>
-    <!-- <ViewTransitions />  se actualizo para dejar de usar con js y usar este stilo de forma nativa-->
-    <style>
+    <ViewTransitions />
+    <!-- se actualizo para dejar de usar con js y usar este stilo
+    de forma nativa -->
+    <!-- <style>
       @view-transition {
         navigation: auto;
       }
-    </style>
+    </style> -->
   </head>
   <body class="bg-slate-800 text-slate-100">
     <NavBar />

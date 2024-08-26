@@ -40,9 +40,9 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
         <Title>{name}</Title>
       </div>
 
-      <button id="btn-favorite" class="ml-4">
-        <Icon name="heart-outline" size={50} />
-        <Icon class="hidden" name="heart-full" size={50} />
+      <button id="btn-favorite" class="ml-4" data-name={name} data-id={id}>
+        <Icon data-outline name="heart-outline" size={50} />
+        <Icon data-full class="hidden" name="heart-full" size={50} />
       </button>
     </div>
 
@@ -54,6 +54,53 @@ const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprit
     </audio>
   </section>
 </MainLayout>
+
+<script>
+  import type { IFavoritePokemons } from "@interfaces/IFavoritePokemons";
+
+  const handlePageLoad = () => {
+    const btnFavorite = document.querySelector(
+      "#btn-favorite"
+    ) as HTMLButtonElement;
+
+    if (!btnFavorite) return;
+
+    const heartOutline = btnFavorite.querySelector(
+      "[data-outline]"
+    ) as HTMLElement;
+    const heartFull = btnFavorite.querySelector("[data-full]") as HTMLElement;
+    const name = btnFavorite.dataset.name ?? "";
+    const id = btnFavorite.dataset.id ?? "";
+    let favorites: IFavoritePokemons[] = JSON.parse(
+      localStorage.getItem("favorites") ?? "[]"
+    );
+    const isFavorite = favorites.some((fav) => fav.name === name);
+
+    const toggleHeart = () => {
+      heartOutline.classList.toggle("hidden");
+      heartFull.classList.toggle("hidden");
+    };
+
+    if (isFavorite) toggleHeart();
+
+    const toggleFavorites = () => {
+      if (isFavorite) {
+        favorites = favorites.filter((fav) => fav.name !== name);
+      } else {
+        favorites.push({ id: +id, name });
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    };
+
+    btnFavorite.addEventListener("click", () => {
+      toggleHeart();
+      toggleFavorites();
+    });
+  };
+
+  document.addEventListener("astro:page-load", handlePageLoad);
+</script>
 
 <style>
   a {
