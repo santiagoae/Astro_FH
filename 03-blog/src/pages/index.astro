@@ -1,9 +1,10 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import { siteConfig } from "@config/site-config";
-import BlogPost from "@components/BlogPost.astro";
-// const globalPosts = await Astro.glob("@pages/posts/*{.md,.mdx}");
-const globalPosts = await Astro.glob("@pages/posts/*.{md,mdx}");
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog");
+console.log("blog posts", blogPosts);
 ---
 
 <MainLayout title={siteConfig.title}>
@@ -14,9 +15,7 @@ const globalPosts = await Astro.glob("@pages/posts/*.{md,mdx}");
         {siteConfig.description}
       </h1>
 
-      <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-        {globalPosts.map((post) => <BlogPost {...post} />)}
-      </div>
+      <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2"></div>
     </div>
   </section>
 </MainLayout>
