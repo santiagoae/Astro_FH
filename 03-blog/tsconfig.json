@@ -9,7 +9,8 @@
       "@styles/*": ["src/styles/*"],
       "@config/*": ["src/config/*"],
       "@interfaces/*": ["src/interfaces/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@images/*": ["src/assets/images/*"]
     }
   }
 }
