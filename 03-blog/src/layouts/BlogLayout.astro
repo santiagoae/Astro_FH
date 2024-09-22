@@ -6,10 +6,10 @@ import "../styles/blog.css";
 //   title?: string;
 // }
 
-const { title, ...rest } = Astro.props;
-const frontMatter = rest.frontmatter;
-console.log("algo", rest);
-console.log("algo");
+const { title } = Astro.props; // ...rest
+// const frontMatter = rest.frontmatter;
+// console.log("algo", rest);
+// console.log("algo");
 ---
 
 <!doctype html>
@@ -17,7 +17,7 @@ console.log("algo");
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{frontMatter.title}</title>
+    <title>{title}</title>
 
     <ViewTransitions />
   </head>

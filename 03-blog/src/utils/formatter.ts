@@ -1,5 +1,5 @@
 export class Formatter {
-  static formatDate(value: string) {
+  static formatDate(value: string | Date) {
     const date = new Date(value);
 
     return Intl.DateTimeFormat("es-Es", {

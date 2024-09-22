@@ -2,9 +2,9 @@
 import MainLayout from "@layouts/MainLayout.astro";
 import { siteConfig } from "@config/site-config";
 import { getCollection } from "astro:content";
+import TypedBlogPost from "@components/TypedBlogPost.astro";
 
 const blogPosts = await getCollection("blog");
-console.log("blog posts", blogPosts);
 ---
 
 <MainLayout title={siteConfig.title}>
@@ -15,7 +15,9 @@ console.log("blog posts", blogPosts);
         {siteConfig.description}
       </h1>
 
-      <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2"></div>
+      <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+        {blogPosts.map((post) => <TypedBlogPost post={post} />)}
+      </div>
     </div>
   </section>
 </MainLayout>
