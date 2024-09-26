@@ -26,6 +26,7 @@ const frontmatter = post.data;
     <a
       href={`/posts/${post.slug}`}
       class="text-xl font-semibold hover:underline text-white"
+      transition:name=`${frontmatter.title}-image`
     >
       {frontmatter.description}
     </a>
