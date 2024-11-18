@@ -27,6 +27,11 @@ const authorCollection = defineCollection({
   schema: ({image}) => z.object({
     name: z.string(),
     avatar: image().refine(img => img.width <= 1200,{message: 'Image should be lower than 1200px'}),
+    twitter: z.string(),
+    linkedIn: z.string(),
+    github: z.string(),
+    bio: z.string(),
+    subtitle: z.string(),
   })
 })
 
