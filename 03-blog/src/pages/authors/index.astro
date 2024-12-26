@@ -1,9 +1,10 @@
 ---
 import AuthorCard from "@components/AuthorCard.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
-const authorList = await getCollection("author");
+const authorList: Array<CollectionEntry<"author">> =
+  await getCollection("author");
 ---
 
 <MainLayout title="Descripcion Autores">
